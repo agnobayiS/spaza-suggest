@@ -4,18 +4,18 @@ import SpazaSuggest from '../spaza-suggest.js';
 import pgPromise from 'pg-promise';
 
 // const DATABASE_URL= process.env.DATABASE_URL || "postgresql://codex-coder:pg123@localhost:5432/spaza_suggest";
-const DATABASE_URL= process.env.DATABASE_URL || "postgresql://zuggs:suggest123@localhost:5432/spaza_suggest";
+const DATABASE_URL= process.env.DATABASE_URL || "postgresql://siyabonga:siya@localhost:5432/spaza";
 
 const config = { 
 	connectionString : DATABASE_URL
 }
 const pgp = pgPromise();
 
-// if (process.env.NODE_ENV == 'production') {
-// 	config.ssl = { 
-// 		rejectUnauthorized : false
-// 	}
-// }
+if (process.env.NODE_ENV == 'production') {
+	config.ssl = { 
+		rejectUnauthorized : false
+	}
+}
 
 const db = pgp(config);
 const spazaSuggest = SpazaSuggest(db);
@@ -35,6 +35,8 @@ describe ("The smart spaza", function() {
         
         const areas = await spazaSuggest.areas();
         assert.equal(5, areas.length);
+
+        console.log(areas);
         assert.equal('Khayelitsa - Site C', areas[2].area_name);
 
     });
@@ -79,6 +81,7 @@ describe ("The smart spaza", function() {
         await spazaSuggest.suggestProduct(area1.id, client.id, 'Baked Beans');
 
         const suggestions = await spazaSuggest.suggestionsForArea(area1.id);
+        
 
         assert.equal(2, suggestions.length);
         assert.equal('Small Pizzas', suggestions[0].product_name);

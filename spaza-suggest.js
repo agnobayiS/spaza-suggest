@@ -32,6 +32,7 @@ export default function SpazaSuggest (db){
     }
 
     async function suggestProduct(areaId, clientId, suggestion) {
+        console.log({areaId, clientId, suggestion});
         await db.none(`insert into suggestion(area_id, client_id, product_name) values ($1, $2, $3)`, 
             [areaId, clientId, suggestion])
     }
