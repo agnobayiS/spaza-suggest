@@ -35,6 +35,11 @@ create table accepted_suggestion(
     foreign key (spaza_id) references spaza(id)
 );
 
+insert into area (area_name) values ('Khayelitsa - Site B');
+insert into area (area_name) values ('Khayelitsa - Site C');
+insert into area (area_name) values ('Khayelitsa - Makhaza');
+insert into area (area_name) values ('Nyanga');
+insert into area (area_name) values ('Nyanga East');
 -- create table liked_suggestion(
 --     id serial not null primary key,
 --     suggestion_id int not null,
