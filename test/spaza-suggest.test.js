@@ -95,8 +95,8 @@ describe ("The smart spaza", function() {
         const code = await spazaSuggest.registerClient('spazani');
         const client = await spazaSuggest.clientLogin(code);
 
-        const area1 = await spazaSuggest.findAreaByName('Nyanga');
         const area2 = await spazaSuggest.findAreaByName('Nyanga East');
+        const area1 = await spazaSuggest.findAreaByName('Nyanga');
 
         await spazaSuggest.suggestProduct(area1.id, client.id, 'Small Pizzas');
         await spazaSuggest.suggestProduct(area2.id, client.id, 'Small Pizzas');
@@ -105,7 +105,7 @@ describe ("The smart spaza", function() {
         const suggestions = await spazaSuggest.suggestions(client.id);
 
         assert.equal(3, suggestions.length);
-        assert.equal('Nyanga East', suggestions[1].area_name);
+        assert.equal('Nyanga', suggestions[1].area_name);
 
     });
 
