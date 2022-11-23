@@ -34,7 +34,7 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: create postgresql tables
-      run: PGPASSWORD=siya psql -h localhost -U siyabonga -d spaza -a -f ./table.sql
+      run: PGPASSWORD=siya psql -h localhost -U siyabonga -d spaza -a -f ./002.table.sql
     - name: run tests with postgresql
       run:
         npm test
